@@ -35,7 +35,7 @@ window.addEventListener('message', function (eventData) {
                 jQuery.getJSON(`/recommendations/products.json?product_id=${pid}&limit=4`, function (
                     response
                 ) {
-                    var recommendedProducts = response.products;
+                    let recommendedProducts = response.products;
                     if (recommendedProducts.length > 0) {
                         // var firstRecommendedProduct = recommendedProducts[0];
                         // alert(

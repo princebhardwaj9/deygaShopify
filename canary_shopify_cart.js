@@ -1,4 +1,5 @@
 window.addEventListener('message', function (eventData) {
+    app.sendTextMessage('In Script');
     try {
         if (JSON.parse(eventData.data)) {
             let event = JSON.parse(eventData.data);

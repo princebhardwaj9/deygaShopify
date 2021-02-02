@@ -17,33 +17,12 @@ window.addEventListener('message', function (eventData) {
                 jQuery.post('/cart/clear.js');
                 return;
             } else if (event.event_code === "custom-event" && event.data && event.data.code === "get-cart") {
-                jQuery.getJSON('/cart.js', function (cart) {
-                    if (cart && cart.items && cart.items.length > 0) {
-                        document.getElementById('ymIframe').contentWindow.postMessage(JSON.stringify({
-                            event_code: 'ym-client-event',
-                            data: JSON.stringify({
-                                event: {
-                                    code: "get-cart-event",
-                                    data: cart
-                                }
-                            })
-                        }), '*');
-                    }
-                });
-                return;
-            } else if (event.event_code === "custom-event" && event.data && event.data.code === "product-recomend") {
-                let pid = event.data.pid;
-                jQuery.getJSON(`/recommendations/products.json?product_id=${pid}&limit=4`, function (
+//                 let pid = event.data.pid;
+                jQuery.getJSON(`/recommendations/products.json?product_id=1521860509809&limit=4`, function (
                     response
                 ) {
                     let recommendedProducts = response.products;
                     if (recommendedProducts.length > 0) {
-                        // var firstRecommendedProduct = recommendedProducts[0];
-                        // alert(
-                        //     "The title of the first recommended product is: " +
-                        //     firstRecommendedProduct.title
-                        // );
-
                         document.getElementById('ymIframe').contentWindow.postMessage(JSON.stringify({
                             event_code: 'ym-recomend-event',
                             data: JSON.stringify({
@@ -56,6 +35,7 @@ window.addEventListener('message', function (eventData) {
 
                     }
                 });
+                return;
             } else if (event.event_code === "custom-event" && event.data && event.data.code === "page_open") {
                 var newWindow = window.open(event.data.data, "_self");
                 return;
